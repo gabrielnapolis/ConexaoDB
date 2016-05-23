@@ -4,12 +4,12 @@ import java.util.Scanner;
 
 public class Main {
 
-	private static Scanner leia;
-	private static Scanner ler;
-
+	static Scanner ler = new Scanner(System.in);
+	
 	public static void main(String[] args) {
-		ler = new Scanner(System.in);
+		
 
+		do{
 		int opcao = 0;
 		System.out.println("----------------------------------------");
 		System.out.println(" Digite a opcao desejada: ");
@@ -21,7 +21,10 @@ public class Main {
 		System.out.println("    0 - Sair");
 		System.out.println("----------------------------------------");
 		opcao = ler.nextInt();
-
+		if(opcao ==0){
+			break;
+		}
+		
 		switch (opcao) {
 		case 1:
 			IncluirMedico();
@@ -34,35 +37,53 @@ public class Main {
 		case 5:
 			ConsultarMedico();
 		}
+		}while(true);
 	}
 
 	public static void IncluirMedico() {
-		leia = new Scanner(System.in);
-		Incluir p1 = new Incluir();
+		Funcoes p1 = new Funcoes();
 		
-		System.out.println("Digite o CRM do médico: ");
-		p1.setCrm(leia.nextInt());
-		System.out.println("Digite o nome do médico");
-		p1.setNome(leia.next());
-		System.out.println("Digite a especialidade do médico");
-		p1.setEspecialidade(leia.next());
-		
-		//INCLUIR NO BANCO DE DADOS
+		do {
+
+			System.out.println("Digite o CRM do médico ou 0 para sair: ");
+			p1.setCrm(ler.nextInt());
+			if(p1.getCrm()==0){
+				break;
+			}
+			System.out.println("Digite o nome do médico");
+			p1.setNome(ler.next());
+			System.out.println("Digite a especialidade do médico");
+			p1.setEspecialidade(ler.next());
+			
+			
+			p1.IncluirNoBanco();
+			
+		} while (true);
 	}
-	
 	public static void AlterarMedico() {
+		Funcoes p2 = new Funcoes();
 		
-	}	
-
-	public static void ExcluirMedico(){
+		do {
+			
+			System.out.println("Digite o CRM do Médico que deseja fazer alterações: ");
+			p2.setCrm(ler.nextInt());
+			
+		} while(true);
+		
 		
 	}
 
-	public static void ListarMedico(){
-		
+	public static void ExcluirMedico() {
+
 	}
-	
-	public static void ConsultarMedico(){
+
+	public static void ListarMedico() {
+		Funcoes p4 = new Funcoes();
 		
+		p4.Listar();
+	}
+
+	public static void ConsultarMedico() {
+
 	}
 }
